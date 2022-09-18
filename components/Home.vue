@@ -6,15 +6,17 @@
             <InputFile @file-updated="atualizarArquivo" class="h-16"   />
             <p v-if="imagem!=null">{{imagem.name}} - <span class="text-green-400"> {{imagem.size}} Bytes</span></p>
             <div class="flex justify-center border rounded-lg border-blue-500" v-if="imagem!=null" >
-                <img :src="url" alt="Image"  style="height: 23rem;" v-if="imagem!=null">
+                <img :src="url" alt="Image"  class="h-80 " v-if="imagem!=null">
             </div>
             <ButtonForm v-if="imagem!=null" @click="removerBg"/>
         </div>
     </div>
+        <Loader v-if="loading"/>
   </div>
 </template>
 
 <script>
+import Loader from './Loader.vue'
 import ButtonForm from './Ui/ButtonForm.vue'
 import InputFile from './Ui/InputFile.vue'
 
@@ -24,11 +26,13 @@ export default {
         return {
             imagem: null,
             url: null,
+            loading: false,
         }
     },
     components: {
         InputFile,
         ButtonForm,
+        Loader,
     },
     methods: {
         atualizarArquivo(e) {
@@ -37,6 +41,7 @@ export default {
             console.log(this.imagem)
         },
         async removerBg() {
+            this.loading=true;
             const data = new FormData();
             data.append("file", this.imagem);
 
@@ -53,9 +58,14 @@ export default {
                 .then(response =>  {
                     response.blob().then( responseBlob => {
                         this.url = URL.createObjectURL(responseBlob)
+                        this.loading=false;
                     })                
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    console.error(err)
+                    this.loading=false;
+                    });
+                
                 }
     },
 
