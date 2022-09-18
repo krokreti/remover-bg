@@ -21,8 +21,16 @@ export default {
   css: [],
 
   tailwindcss: {
-    
+
   },
+
+  fontawesome: {
+    icons:{
+     solid:true,
+     regular:true,
+     brands:true
+    }
+   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -34,6 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/fontawesome'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -1,17 +1,40 @@
 <template>
-  <div>
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
-    <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
-    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+  <div class="flex w-full" > 
+    <label class="block w-full mb-2 px-2 py-3 text-lg text-center bg-gray-400 font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-500 hover:text-white" for="file_input"
+    
+    >
+        <font-awesome-icon :icon="['fas', 'upload']"></font-awesome-icon>
+        Escolher Imagem
+    </label>
+    <input class="block" aria-describedby="file_input_help"
+    accept="image/*"
+     id="file_input"
+      type="file" 
+     @change="onFileChange"
+     >
   </div>
 </template>
 
 <script>
 export default {
-    name: 'InputFile'
+    name: 'InputFile',
+        methods: {
+        onFileChange(e) {
+            const file = e.target.files[0];
+            if(file) {
+                this.$emit('file-updated', file);
+            }
+        }
+    },
 }
 </script>
 
-<style>
+<style scoped>
+input[type="file"] {
+    display: none;
+}
 
+label {
+
+}
 </style>
