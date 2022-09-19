@@ -1,5 +1,5 @@
 <template >
-  <div class="h-screen bg-gradient-to-b from-black to-gray-800">
+  <div class="h-screen bg-gradient-to-b from-black to-gray-800 sm:flex sm:justify-center sm:items-stretch" >
     <Home />
   </div>
 </template>
