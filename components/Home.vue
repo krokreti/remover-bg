@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:w-3/12" style="border:1px solid red">
+  <div class="sm:w-3/12" >
     <div class="flex items-start justify-center text-white  p-4 h-screen" >
         <div class="grid gap-4 grid-cols-1 w-full"  >
             <p class="text-center h-16 text-2xl"  >Removedor de Background</p>
